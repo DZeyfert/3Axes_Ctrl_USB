@@ -1,0 +1,5 @@
+MCU:			STM32F446VET6
+CPU Freq:			180MHz
+Flash:				512kB
+RAM:					128kB
+GPIO:					81
