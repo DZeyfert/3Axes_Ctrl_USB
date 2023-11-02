@@ -3,23 +3,30 @@
 volatile uint32_t receive_cnt = 0;
 volatile uint8_t rx_flg = 0;
 
-val_t 		vals[AXES_NUM];		// number of pulses and signs extracted from
-uint16_t	dlys[AXES_NUM];		// half-period of one pulse / Time to uphold
-														//	High or Low state of a STEP pin
-uint16_t	cnt[AXES_NUM];		// number of remaining actions for axis
-														//	- initialized by (vals[i].num << 1), then decremented
-														//	- EVEN	- required to RAISE STEP
-														//	- ODD		- required to FALL STEP
-														//	- ZERO	- action is not required, also axis is already STOPPED
+val_t 		vals[AXES_NUM];		// number of pulses and signs extracted from command
+uint16_t	dlys[AXES_NUM];		// half-period of one pulse / Time to uphold High
+														//	 or Low state of a STEP pin
+uint16_t	cnt[AXES_NUM];		// number of remaining actions for axis, 
+														//   initialized by (vals[i].num << 1), then
+														//   decremented
+														//	 - EVEN	- required to RAISE STEP
+														//	 - ODD		- required to FALL STEP
+														//	 - ZERO	- action is not required, also axis is
+														//   already STOPPED
 uint32_t  stamp[AXES_NUM];	// target time to next action (rise or fall)
 uint32_t	tframe = 0, next_tframe = 0;			// timeframe length in [ms]
 uint8_t	  axes_num = 0, next_axes_num = 0;	// name is self explanatory
 
 
 /* example string:
-
+[Interval_ms];[Axes num];[Axis1 steps];[Axis2 steps];[Axis3 steps];\n
 020;3;+000;-013;+060;\n
 */
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//   uint8_t convert_input(void)                                              //
+// Checks input data. If formatting is correct and values are in acceptable   //
+// range returns 1, othewise - 0                                              //
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 uint8_t convert_input(void)
 {
 	uint32_t tmp;
@@ -93,7 +100,11 @@ uint8_t convert_input(void)
 	return 1;	
 }
 
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//   void frame_setup(void)                                                   //
+// Splits [Interval_ms] into 2*[AxisN steps] for each axis to accomodate Step //
+// Rise and Fall events, also sets Direction for the duration of Frame        //
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 void frame_setup(void)
 {
 	uint32_t tmp = MICROS();
@@ -142,7 +153,10 @@ void frame_setup(void)
 }
 
 
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//   void frame_mgmt(void)                                                    //
+// Changes state of Step pin if the time is right                             // 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 void frame_mgmt(void)
 {
 	for (uint8_t i = 0; i < AXES_NUM; i++) {

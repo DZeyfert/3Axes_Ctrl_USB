@@ -1,10 +1,11 @@
 #include "settings.h"
 
-/*
-	sets pins for axes Y, E0, E2 and User LED
-	one executed, axes are in Hold (Active) mode
-*/
-void Pins_Init()
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//   void Pins_Init(void)                                                     //
+// Sets pins for axes Y, E0, E2 and User LED                                  //
+// Once executed, axes are in Hold (Active) mode                              //
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+void Pins_Init(void)
 {
 	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN | RCC_AHB1ENR_GPIOCEN | RCC_AHB1ENR_GPIODEN | RCC_AHB1ENR_GPIOEEN;	// GPIOB,C,D,E
 	
