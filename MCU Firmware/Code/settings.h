@@ -63,7 +63,7 @@
 	#define E2_DIR						(1 << 3)
 
 	// For additioanl Axes change AXES_NUM to appropriate vlue, add defines here
-	//and modify array "axes" in "motor.c"
+	// modify array "axes" in "motor.c" and add init code in "pins.c"
 
 
 	// LED
