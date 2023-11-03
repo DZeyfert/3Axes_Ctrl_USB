@@ -1,6 +1,6 @@
 # 3Axes_Ctrl_USB
 
-This project uses BTT RUMBA32_v1_0E 3D printer board (based around 180MHz STM32F446VET6) as improvised 3-axes Stepper Motor Controller with USB control interface.
+This project uses BTT RUMBA32_v1_0E 3D printer board (based around 180MHz STM32F446VET6) as improvised 3-axes Stepper Motor Controller with USB interface.
 
 ![BTT Rumba32_v1.0](https://github.com/DZeyfert/3Axes_Ctrl_USB/blob/main/PICs/BTT_Rumba32_v1.0.jpg)
 
