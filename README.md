@@ -14,8 +14,8 @@ For stepper motors (especially open loop) speed should be ramped up and down. He
 ```
 |Parameter|Length|Range|
 | --- | --- | --- |
-| [Interval_ms] | 3 | 0..999 |
-| [Axes num] | 1 | 1..9 |
+| [Interval_ms] | 3 | 20..999 |
+| [Axes num] | 1 | 1..3 |
 | [Axis1 steps] | 4 | -999..+999 |
 
 
