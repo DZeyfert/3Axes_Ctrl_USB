@@ -10,13 +10,13 @@ For stepper motors (especially open loop) speed should be ramped up and down. He
 
 ### Control protocol (over USB VCP):
 ```git
-[Interval_ms];[Axes num];[Axis1 steps];[Axis2 steps];[Axis3 steps];\n
+[Interval_ms];[Axes_Num];[Axis1_Steps];[Axis2_Steps];[Axis3_Steps];\n
 ```
 |Parameter|Length|Range|
 | --- | --- | --- |
 | [Interval_ms] | 3 | 20..999 |
-| [Axes num] | 1 | 1..3 |
-| [Axis1 steps] | 4 | -999..+999 |
+| [Axes_Num] | 1 | 1..3 |
+| [Axis1_Steps] | 4 | -999..+999 |
 
 
 
