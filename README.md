@@ -39,7 +39,7 @@ If the next command arrives earlier than the previous was completed, new one ove
 
 >Q: Why support only 3 axes if the board in question has capability to drive up to 6 motors?
 
-A: Because Rumba board was repurposed from antoher project, where axes X and Z fought honorably but were defeated by wit and cleverness of a previous owner. And I only had 3 motors. If you want more axes, just change define "AXES_NUM" to the new value. Code is written in a way that everything will scale up (or down) automatically (preprocessor magic), but you have to implement corresponding low-level initialization code if you want to use axes X, Z and E1 (for further explanations check "settings.h" in "MCU Firmware/Code").
+A: Because Rumba board was repurposed from antoher project, where axes X and Z fought honorably but were in the end defeated by previous user. And I only had 3 motors. If you want more axes, just change define "AXES_NUM" to the new value. Code is written in a way that everything will scale up (or down) automatically (preprocessor magic), but you have to implement corresponding low-level initialization code if you want to use axes X, Z and E1 (for further explanations check "settings.h" in "MCU Firmware/Code").
 
 >Q: Why don't you use Marlin or smth and control it via serial?
 
